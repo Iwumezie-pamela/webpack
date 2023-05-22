@@ -19,6 +19,9 @@
   },
   "homepage": "https://github.com/Iwumezie-pamela/webpack#readme",
   "dependencies": {
+    "bootstrap": "^5.2.3",
+    "jquery": "^3.7.0",
+    "popper.js": "^1.16.1",
     "webpack": "^5.83.1",
     "webpack-cli": "^5.1.1"
   }

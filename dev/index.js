@@ -12,7 +12,7 @@ const beautify = (function () {
     modal_name = modal_name === undefined ? create_modal_name() : modal_name;
 
     const footerBtn = `<button type="button" class="btn btn-danger" data-dismiss="modal" >Close</button>
-             <button type="button" class="btn btn-success">${buttonTitle}</button>`;
+    <button type="button" class="btn btn-success">${buttonTitle}</button>`;
 
     const modal_content = `<div class="modal" tabindex="-1" id="newModal">
   <div class="modal-dialog">
