@@ -1,19 +1,15 @@
 const beautify = (function () {
   // add modal
-  (title = 'Title'),
-    (content = 'Content'),
-    (buttonTitle = 'OK'),
-    (footer = true),
-    (duration = 0);
+
   function addModal(option) {
     let { title, content, buttonTitle, footer, duration, modal_name } = option;
 
-    title = title === null ? 'default title' : title;
-    content = content === null ? 'default content' : content;
-    buttonTitle = buttonTitle === null ? 'button title' : buttonTitle;
-    footer = footer === null ? 'default title' : footer;
-    duration = duration === null ? 1000 : duration;
-    modal_name = modal_name === null ? create_modal_name() : modal_name;
+    title = title === undefined ? 'default title' : title;
+    content = content === undefined ? 'default content' : content;
+    buttonTitle = buttonTitle === undefined ? 'OK' : buttonTitle;
+    footer = footer === null ? false : true;
+    duration = duration === undefined ? 1000 : duration;
+    modal_name = modal_name === undefined ? create_modal_name() : modal_name;
 
     const footerBtn = `<button type="button" class="btn btn-danger" data-dismiss="modal" >Close</button>
              <button type="button" class="btn btn-success">${buttonTitle}</button>`;
@@ -41,13 +37,17 @@ const beautify = (function () {
     divElement.innerHTML = modal_content;
     document.body.appendChild(divElement);
     $('#newModal').modal('show');
+
+    console.log(modal_name);
+    return modal_name;
   }
 
   // create modal name function
   const create_modal_name = () => {
     const date = new Date();
-    const currentDate = date.getTime();
-    mo;
+    const currentTime = date.getTime();
+    modal_name = `modal_` + currentTime;
+    return modal_name;
   };
 
   // remove modal
@@ -103,3 +103,5 @@ const beautify = (function () {
     removeSpinner,
   };
 })();
+
+window.beautify = beautify; //to get code globally

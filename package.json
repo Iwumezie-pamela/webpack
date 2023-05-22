@@ -1,0 +1,25 @@
+{
+  "name": "beautify-css-using-module-pattern",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Iwumezie-pamela/webpack.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Iwumezie-pamela/webpack/issues"
+  },
+  "homepage": "https://github.com/Iwumezie-pamela/webpack#readme",
+  "dependencies": {
+    "webpack": "^5.83.1",
+    "webpack-cli": "^5.1.1"
+  }
+}
