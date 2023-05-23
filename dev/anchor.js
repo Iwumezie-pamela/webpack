@@ -21,7 +21,7 @@ function AnchorMixer() {
   const jqueryScript = document.createElement('script');
   jqueryScript.src =
     'https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js';
-  jqueryScript.async = true;
+  // jqueryScript.async = true;
   document.head.appendChild(jqueryScript);
 
   // - Load the bootstrap library
@@ -38,6 +38,7 @@ function AnchorMixer() {
           // typeof axios !== 'undefined' &&
           // typeof Cookies !== 'undefined'  &&
           typeof jQuery !== 'undefined' &&
+          typeof $ !== undefined &&
           typeof bootstrap !== 'undefined'
         ) {
           resolve({
@@ -53,16 +54,21 @@ function AnchorMixer() {
       }, 100);
     });
   };
+
+  //initialize the app
+  this.initializeAnchor = async (dependencies) => {
+    dependencies = await dependencies;
+  };
 }
 
-const anchor = (function (anchorMixer) {
-  anchorMixer.load_dependencies().then((dependencies) => {
-    //Now you can use the dependencies here..
-    console.log(dependencies);
+// const anchor = (function (anchorMixer) {
+//   anchorMixer.load_dependencies().then((dependencies) => {
+//     Now you can use the dependencies here..
+//     console.log(dependencies);
 
-    //or you can call the library(ies) directly,
-    // e,g axios like this: console.log(axios)
-  });
-})(new AnchorMixer());
+//     or you can call the library(ies) directly,
+//     e,g axios like this: console.log(axios)
+//   });
+// })(new AnchorMixer());
 
 module.exports = AnchorMixer;

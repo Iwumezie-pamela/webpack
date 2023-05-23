@@ -1,4 +1,8 @@
-import AnchorMixer from '../anchor';
+import AnchorMixer from './anchor';
+
+/**
+ * This is where all the implementations will take place
+ */
 
 const beautify = (function () {
   // add modal
@@ -49,17 +53,40 @@ const beautify = (function () {
     return modal_name;
   };
 
-  // remove modal
-  const removeModal = () => {
-    let modal = document.getElementById('newModal');
-    modal.classList.remove('show');
-    let backdrop = document.querySelector('.modal-backdrop');
-    backdrop.parentNode.removeChild(backdrop);
-    modal.remove();
-  };
   return {
-    addModal,
+    addModal: addModal,
   };
-})(new AnchorMixer());
+})();
 
-window.beautify = beautify; //to get code globally
+/**
+ * Custom Library/Interface to make available for interaction
+ */
+
+const CustomJS = (function (anchorMixer, beautify) {
+  let dependencies = anchorMixer.load_dependencies();
+
+  //once the DOM has been loaded completely
+  document.addEventListener('DOMContentLoaded', function () {
+    anchorMixer.initializeAnchor(dependencies);
+  });
+
+  //create a new CustomJs app
+  //and return the methods to use
+  async function createApp() {
+    dependencies = await dependencies;
+    console.log(dependencies);
+
+    if (dependencies) {
+      //load the methods
+      return {
+        addModal: beautify.addModal,
+      };
+    }
+  }
+
+  return {
+    createApp: createApp,
+  };
+})(new AnchorMixer(), beautify);
+
+window.CustomJS = CustomJS; //to get code globally
