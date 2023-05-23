@@ -1,3 +1,5 @@
+import AnchorMixer from '../anchor';
+
 const beautify = (function () {
   // add modal
 
@@ -37,9 +39,6 @@ const beautify = (function () {
     divElement.innerHTML = modal_content;
     document.body.appendChild(divElement);
     $('#newModal').modal('show');
-
-    console.log(modal_name);
-    return modal_name;
   }
 
   // create modal name function
@@ -58,50 +57,9 @@ const beautify = (function () {
     backdrop.parentNode.removeChild(backdrop);
     modal.remove();
   };
-
-  // add spinner
-  function addSpinner() {
-    const spinnerContent = `<div class="spinner-border text-primary" id='spin' role="status">
-  <span class="sr-only"></span>
-</div>
-<div class="spinner-border text-secondary" role="status">
-  <span class="sr-only"></span>
-</div>
-<div class="spinner-border text-success" role="status">
-  <span class="sr-only"></span>
-</div>
-<div class="spinner-border text-danger" role="status">
-  <span class="sr-only"></span>
-</div>
-<div class="spinner-border text-warning" role="status">
-  <span class="sr-only"></span>
-</div>
-<div class="spinner-border text-info" role="status">
-  <span class="sr-only"></span>
-</div>
-<div class="spinner-border text-light" role="status">
-  <span class="sr-only"></span>
-</div>
-<div class="spinner-border text-dark" role="status">
-  <span class="sr-only"></span>
-</div>`;
-
-    const divElement = document.createElement('div');
-    divElement.innerHTML = spinnerContent;
-    document.body.appendChild(divElement);
-  }
-
-  //remove spinner
-  const removeSpinner = () => {
-    var spinner = document.getElementById('spin');
-    spinner.style.display = 'none';
-  };
   return {
     addModal,
-    removeModal,
-    addSpinner,
-    removeSpinner,
   };
-})();
+})(new AnchorMixer());
 
 window.beautify = beautify; //to get code globally
