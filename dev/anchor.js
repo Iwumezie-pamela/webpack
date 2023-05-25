@@ -5,41 +5,56 @@
  * Loads Scripts and libraries that are used in the core(anchor)
  */
 function AnchorMixer() {
-  //load the scripts
+  const dependenciesArray = [
+    {
+      name: 'jqueryScript',
+      src: 'https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js',
+      type: 'script',
+    },
+    {
+      name: 'bootstrapScript',
+      src: 'https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js',
+      type: 'script',
+    },
+    {
+      name: 'cssLink',
+      src: 'https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css',
+      type: 'stylesheet',
+    },
+  ];
 
-  // - Load the Axios Library
-  // const axiosScript = document.createElement('script');
-  // axiosScript.src = 'https://unpkg.com/axios@0.25.0/dist/axios.min.js';
-  // axiosScript.async = true;
-  // document.head.appendChild(axiosScript);
+  function createDependencies(arr) {
+    arr.forEach((dependency) => {
+      if (dependency.type === 'script') {
+        //  script name
+        let scriptName = dependency.name;
+        // script src
+        let scriptSrc = dependency.src;
 
-  // - Load the Cookie.js library for example
-  // const cookieScript = document.createElement('script');
-  // cookieScript.src =
-  //   'https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js';
-  // cookieScript.async = true;
-  // document.head.appendChild(cookieScript);
+        // ===============================//
+        scriptName = document.createElement('script');
+        scriptName.src = scriptSrc;
+        scriptName.async = true;
+        document.head.appendChild(scriptName);
+        // =================
+      } else if (dependency.type === 'stylesheet') {
+        // style name
+        let styleName = dependency.name;
+        // src
+        let styleSrc = dependency.src;
+        // =====================
 
-  // - Load the jquery library
-  const jqueryScript = document.createElement('script');
-  jqueryScript.src =
-    'https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js';
-  // jqueryScript.async = true;
-  document.head.appendChild(jqueryScript);
+        styleName = document.createElement('link');
+        styleName.rel = 'stylesheet';
+        styleName.href = styleSrc;
+        document.head.appendChild(styleName);
+      } else {
+        console.log('please add a script');
+      }
+    });
+  }
 
-  // - Load the bootstrap library
-  const bootstrapScript = document.createElement('script');
-  bootstrapScript.src =
-    'https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js';
-  bootstrapScript.async = true;
-  document.head.appendChild(bootstrapScript);
-
-  // load css
-  const cssLink = document.createElement('link');
-  cssLink.rel = 'stylesheet';
-  cssLink.href =
-    'https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css';
-  document.head.appendChild(cssLink);
+  createDependencies(dependenciesArray);
 
   // it defines a function named load_dependencies. This function returns a Promise that resolves when certain dependencies are available.
 
@@ -55,19 +70,13 @@ function AnchorMixer() {
         if (
           //If all three dependencies are available (i.e., their type is not 'undefined'), the Promise is resolved.
 
-          // typeof axios !== 'undefined' &&
-          // typeof Cookies !== 'undefined'  &&
           typeof jQuery !== 'undefined' &&
           typeof $ !== 'undefined' &&
-          typeof bootstrap !== 'undefined' &&
-          typeof cssLink !== 'undefined'
+          typeof bootstrap !== 'undefined'
         ) {
           resolve({
-            // axios: axios,
-            // Cookies: Cookies,
             jQuery: jQuery,
             bootstrap: bootstrap,
-            cssLink: cssLink,
           });
         } else {
           //If any of the dependencies are not available, the code calls load_dependencies() to continue checking for the dependencies until they become available.This allows the function to wait for the dependencies to be loaded before proceeding.
