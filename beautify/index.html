@@ -5,26 +5,40 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link
+    <!-- <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
-    />
+    /> -->
   </head>
   <body>
+    <button>click</button>
+
     <!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script> -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script> -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script> -->
     <script src="../build/beautify.min.js"></script>
     <script>
-      (async function () {
-        const app = await CustomJS.createApp();
+      window.addEventListener('DOMContentLoaded', function (params) {
+        (async function () {
+          const app = await CustomJS.createApp();
+          console.log(app);
 
-        app.addModal({
-          title: "Welcome to pamela's modal",
-          content: 'This is a bootstrap modal content',
-          modal_name: 'simple modal',
-        });
-      })();
+          const modal_name = app.addModal({
+            title: "Welcome to pamela's modal",
+            content: 'This is a bootstrap modal content',
+            modal_name: 'simple_modal',
+          });
+
+          // spinner
+          app.add_spinner();
+
+          const btn = document.querySelector('button');
+          btn.addEventListener('click', function () {
+            // app.removeModal(modal_name);
+            btn.remove();
+          });
+        })();
+      });
     </script>
   </body>
 </html>
